@@ -1,0 +1,38 @@
+/ {
+    keymap {
+        compatible = "zmk,keymap";
+
+        default_layer {
+            bindings = <
+                &joy_x_behavior &joy_y_behavior &pot_volume &joystick_btn_left
+
+                &kp ESC     &kp Q      &kp W        &kp E     &kp R      &kp T      &kp Y      &kp U      &kp I
+                &kp TAB     &kp A      &kp S        &kp D     &kp F      &kp G      &kp H      &kp J      &kp K
+                &kp LSHFT   &kp Z      &kp X        &kp C     &kp V      &kp B      &kp N      &kp M      &kp L
+                &kp LCTRL   &kp LALT   &mt LALT FN_LAYER &kp SPACE &kp DOT &kp COMMA &kp LCTRL  &kp P      &kp O
+            >;
+        };
+
+        fn_layer {
+            bindings = <
+                &joy_x_behavior &joy_y_behavior &pot_volume &joystick_btn_left
+
+                &kp ESC     &kp N1     &kp N2       &kp N3      &kp N4      &kp N5     &kp N6     &kp N7     &kp N8
+                &kp GRAVE   &kp N0     &kp PLUS     &kp MINUS   &kp STAR    &kp SLASH  &kp EQUAL  &kp DQT    &kp LPAR
+                &kp LSHFT   &kp F2     &kp DEL      &kp BSPC    &kp F5      &kp QMARK  &kp COLON  &kp LBKT   &kp RBKT
+                &kp LCTRL   &kp LALT   &mt LALT FN_LAYER &kp SPACE &kp DOT &kp COMMA &kp ENTER  &kp RPAR   &kp N9
+            >;
+        };
+
+        alt_fn_layer {
+            bindings = <
+                &joy_x_behavior &joy_y_behavior &pot_volume &joystick_btn_left
+
+                &kp ESC     &kp EXCL   &kp AT      &kp HASH    &kp DLLR   &kp PRCNT  &kp CARET  &kp AMPS   &kp BSLH
+                &kp F12     &kp UNDER  &kp F3      &kp HOME    &kp END    &kp PG_UP  &kp LT     &kp GT     &kp LBRC
+                &kp LSHFT   &kp F1     &kp F10     &kp F6      &kp PG_DN  &kp F8     &kp SEMI   &kp F7     &kp F11
+                &kp LCTRL   &kp LALT   &mt LALT FN_LAYER &kp SPACE &kp DOT &kp COMMA &kp ENTER  &kp RBRC   &kp F9
+            >;
+        };
+    };
+};

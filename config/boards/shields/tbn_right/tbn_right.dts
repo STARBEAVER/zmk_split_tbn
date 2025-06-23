@@ -1,0 +1,7 @@
+#include "tbn_right.overlay"
+#include "encoder_right.overlay"
+#include "joystick_right.overlay"
+
+&kscan0 {
+    status = "okay";
+};

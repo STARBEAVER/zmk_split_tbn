@@ -1,0 +1,18 @@
+/ {
+    potentiometer: potentiometer@0 {
+        compatible = "zmk,analog-input";
+        io-channels = <&adc 7>;
+        status = "okay";
+        label = "POT_INPUT";
+    };
+
+    behaviors {
+        pot_volume: behavior_pot@0 {
+            compatible = "zmk,behavior-analog-axis";
+            input = <&potentiometer>;
+            bindings = <&kp VOL_UP>, <&kp VOL_DN>;
+            scale = <2>;
+            threshold = <4>;
+        };
+    };
+};

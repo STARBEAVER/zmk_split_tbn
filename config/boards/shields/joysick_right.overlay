@@ -1,0 +1,42 @@
+/ {
+    joy_x: analog_input@0 {
+        compatible = "zmk,analog-input";
+        label = "JOYSTICK_X";
+        io-channels = <&adc 0>;
+        status = "okay";
+    };
+
+    joy_y: analog_input@1 {
+        compatible = "zmk,analog-input";
+        label = "JOYSTICK_Y";
+        io-channels = <&adc 5>;
+        status = "okay";
+    };
+
+    behaviors {
+        joy_x_behavior: behavior_joy_x {
+            compatible = "zmk,behavior-analog-axis";
+            input = <&joy_x>;
+            bindings = <&kp RIGHT>, <&kp LEFT>;   // X-ось
+            scale = <2>;
+            threshold = <4>;
+        };
+
+        joy_y_behavior: behavior_joy_y {
+            compatible = "zmk,behavior-analog-axis";
+            input = <&joy_y>;
+            bindings = <&kp DOWN>, <&kp UP>;     // Y-ось
+            scale = <2>;
+            threshold = <4>;
+        };
+    };
+
+    gpio_keys {
+        compatible = "gpio-keys";
+        joystick_btn_right: joystick_button {
+            label = "JoystickButton";
+            gpios = <&gpio0 8 GPIO_ACTIVE_LOW>;
+            linux,code = <KEY_BTN_3>;  // Лучше использовать стандартные linux keycodes
+        };
+    };
+};

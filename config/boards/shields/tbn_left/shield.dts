@@ -1,0 +1,9 @@
+#include "tbn_left.overlay"
+#include "display.overlay"
+#include "spi.overlay"
+#include "joystick_left.overlay"
+#include "potentiometr.overlay"
+
+&kscan0 {
+    status = "okay";
+};

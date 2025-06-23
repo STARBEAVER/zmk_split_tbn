@@ -1,0 +1,6 @@
+if SHIELD_TBN
+
+config ZMK_KEYBOARD_NAME
+    default "tbn"
+
+    endif

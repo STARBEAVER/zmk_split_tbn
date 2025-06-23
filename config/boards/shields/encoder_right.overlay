@@ -1,0 +1,17 @@
+/ {
+    encoders {
+        compatible = "zmk,encoders";
+
+        encoder_1: encoder_1 {
+            a-gpios = <&gpio0 17 (GPIO_PULL_UP | GPIO_ACTIVE_HIGH)>;
+            b-gpios = <&gpio0 20 (GPIO_PULL_UP | GPIO_ACTIVE_HIGH)>;
+            resolution = <4>;
+        };
+
+        encoder_2: encoder_2 {
+            a-gpios = <&gpio0 22 (GPIO_PULL_UP | GPIO_ACTIVE_HIGH)>;
+            b-gpios = <&gpio0 31 (GPIO_PULL_UP | GPIO_ACTIVE_HIGH)>;
+            resolution = <4>;
+        };
+    };
+};

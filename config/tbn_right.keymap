@@ -1,0 +1,56 @@
+/ {
+    keymap {
+        compatible = "zmk,keymap";
+
+        default_layer {
+            bindings = <
+            &joystick_btn_right
+                &kp LPAR    &kp RPAR   &kp EXCL     &kp COLON   &kp QMARK  &kp N7     &kp N8     &kp N9     &kp STAR
+                &kp LC(Z)   &kp LC(Y)  &kp V        &kp V       &kp V      &kp N4     &kp N5     &kp N6     &kp MINUS
+                &kp LSHFT   &kp Z      &kp V        &kp V       &kp V      &kp N1      &kp N2    &kp N3   &kp PLUS
+                &kp F4   &kp LALT   &mt LALT FN_LAYER &kp SPACE &kp DOT  &kp COMMA  &kp ENTER    &kp CAPS     &kp F5
+            >;
+        };
+
+        fn_layer {
+            bindings = <
+            &joystick_btn_right
+                &kp ESC     &kp N1     &kp N2       &kp N3      &kp N4      &kp N5     &kp N6     &kp N7     &kp N8
+                &kp GRAVE   &kp N0     &kp PLUS     &kp MINUS   &kp STAR    &kp SLASH  &kp EQUAL  &kp DQT    &kp LPAR
+                &kp LSHFT   &kp F2     &kp DEL      &kp BSPC    &kp F5      &kp QMARK  &kp COLON  &kp LBKT   &kp RBKT
+                &kp LCTRL   &kp LALT   &mt LALT FN_LAYER &kp SPACE &kp DOT &kp COMMA &kp ENTER  &kp RPAR   &kp N9
+            >;
+        };
+
+        alt_fn_layer {
+            bindings = <
+            &joystick_btn_right
+                &kp ESC     &kp EXCL   &kp AT      &kp HASH    &kp DLLR   &kp PRCNT  &kp CARET  &kp AMPS   &kp BSLH
+                &kp F12     &kp UNDER  &kp F3      &kp HOME    &kp END    &kp PG_UP  &kp LT     &kp GT     &kp LBRC
+                &kp LSHFT   &kp F1     &kp F10     &kp F6      &kp PG_DN  &kp F8     &kp SEMI   &kp F7     &kp F11
+                &kp LCTRL   &kp LALT   &mt LALT FN_LAYER &kp SPACE &kp DOT &kp COMMA &kp LCTRL  &kp RBRC   &kp F9
+            >;
+        };
+
+        encoder_layer {
+            bindings = <
+                &encoder_redo &encoder_undo
+                &layer_next &layer_prev
+            >;
+        };
+    };
+
+    behaviors {
+        encoder_redo: encoder_redo {
+            compatible = "zmk,behavior-momentary-key-press";
+            label = "ENCODER_REDO";
+            bindings = <&kp LC(Y)>;
+        };
+
+        encoder_undo: encoder_undo {
+            compatible = "zmk,behavior-momentary-key-press";
+            label = "ENCODER_UNDO";
+            bindings = <&kp LC(Z)>;
+        };
+    };
+};

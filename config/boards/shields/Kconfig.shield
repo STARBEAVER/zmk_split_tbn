@@ -1,0 +1,15 @@
+# Шильды для кастомной клавиатуры TBN
+
+if SHIELD_TBN_LEFT
+
+config SHIELD_TBN_LEFT
+    bool "TBN Left Shield"
+
+endif
+
+if SHIELD_TBN_RIGHT
+
+config SHIELD_TBN_RIGHT
+    bool "TBN Right Shield"
+
+endif

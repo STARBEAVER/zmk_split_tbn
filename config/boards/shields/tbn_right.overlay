@@ -1,7 +1,5 @@
-#include "spi.overlay"
-#include "display.overlay"
-#include "potentiometr.overlay"
-#include "joystick.overlay"
+#include "encoder_right.overlay"
+#include "joystick_right.overlay"
 
 
 / {

@@ -1,0 +1,5 @@
+/ {
+    chosen {
+        zmk,display = &st7789;
+    };
+};
