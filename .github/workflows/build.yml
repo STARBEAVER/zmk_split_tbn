@@ -36,7 +36,7 @@ jobs:
         run: west build -s app -d build/left -b nice_nano_v2 -- -DSHIELD=tbn_left
 
       - name: Upload firmware artifact (left)
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: firmware-left
           path: build/left/zephyr/zmk.uf2
@@ -70,7 +70,7 @@ jobs:
         run: west build -s app -d build/right -b nice_nano_v2 -- -DSHIELD=tbn_right
 
       - name: Upload firmware artifact (right)
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: firmware-right
           path: build/right/zephyr/zmk.uf2
