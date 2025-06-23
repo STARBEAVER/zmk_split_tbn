@@ -1,76 +1,57 @@
-name: Build Firmware
+name: Build ZMK firmware
 
 on:
   push:
-    branches:
-      - main
   pull_request:
 
 jobs:
-  build_left:
-    name: Build Left Half (tbn_left)
+  build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: config/zmk/app  # Работаем из папки, где лежит app
+
     steps:
-      - uses: actions/checkout@v3
-        with:
-          submodules: recursive  # Чтобы подтянуть подмодули, если есть
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: "3.11"
-
-      - name: Install west
-        run: pip install west
-
-      - name: Initialize west workspace
-        run: west init -l .
-
-      - name: Update west workspace
-        run: west update
-
-      - name: Build firmware (left)
-        run: west build -s app -d build/left -b nice_nano_v2 -- -DSHIELD=tbn_left
-
-      - name: Upload firmware artifact (left)
-        uses: actions/upload-artifact@v4
-        with:
-          name: firmware-left
-          path: build/left/zephyr/zmk.uf2
-
-  build_right:
-    name: Build Right Half (tbn_right)
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: config/zmk/app
-    steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repository with submodules
+        uses: actions/checkout@v3
         with:
           submodules: recursive
 
+      - name: Manually initialize ZMK submodules
+        run: |
+          cd config/zmk
+          git submodule update --init --recursive
+
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.11"
+          python-version: '3.x'
 
       - name: Install west
         run: pip install west
 
-      - name: Initialize west workspace
-        run: west init -l .
+      - name: Initialize west
+        run: west init -l config
 
-      - name: Update west workspace
+      - name: Update west
         run: west update
 
-      - name: Build firmware (right)
-        run: west build -s app -d build/right -b nice_nano_v2 -- -DSHIELD=tbn_right
+      - name: Export Zephyr
+        run: west zephyr-export
 
-      - name: Upload firmware artifact (right)
-        uses: actions/upload-artifact@v4
+      - name: Build left firmware
+        run: |
+          west build -s config/zmk/app -d build/left -b nice_nano_v2 -- -DSHIELD=tbn_left -DZMK_CONFIG=$(pwd)/config
+
+      - name: Upload left firmware
+        uses: actions/upload-artifact@v3
         with:
-          name: firmware-right
+          name: tbn_left.uf2
+          path: build/left/zephyr/zmk.uf2
+
+      - name: Build right firmware
+        run: |
+          west build -s config/zmk/app -d build/right -b nice_nano_v2 -- -DSHIELD=tbn_right -DZMK_CONFIG=$(pwd)/config
+
+      - name: Upload right firmware
+        uses: actions/upload-artifact@v3
+        with:
+          name: tbn_right.uf2
           path: build/right/zephyr/zmk.uf2
