@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: config/zmk  # Работаем из папки, где лежит app
+        working-directory: config/zmk/app  # Работаем из папки, где лежит app
     steps:
       - uses: actions/checkout@v3
         with:
@@ -46,7 +46,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: config/zmk
+        working-directory: config/zmk/app
     steps:
       - uses: actions/checkout@v3
         with:
